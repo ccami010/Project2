@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New York Times Books</title>
+</head>
+<body>
+    <h1>
+        NEW YORK TIMES BOOKS
+    </h1>
+    <br>
+    <table style="width:1000px">
+        <h3>
+            The New York Times has been paramount to every eager
+            reader's reading itinerary. In just a few clicks, you can
+            view a range of selected book reviews and bestselling lists.
+        </h3>
+    </table>
+    <br>
+
+    <form action="" method="POST"name="UserSelection">
+        <table style="width:1300px">
+            <!-- Implements the radio field -->
+            <tr>
+                {% for radio_field in form.url_type %}
+                    <td>{{radio_field}}
+                        {{radio_field.label}}</td>
+                {%endfor%}
+            </tr>
+
+            <tr>
+                <!-- Search by field -->
+                <td>
+                    <p>
+                        Search by:
+                        {{ form.search_by() }}
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <!-- Query field  -->
+                <td>
+                    <p>
+                        Enter the author, title, or ISBN:
+                        {{ form.query() }}
+                    </p>
+                </td>
+
+                <!-- List type field -->
+                <td>
+                    <p>
+                        Select list type:
+                        {{ form.list_type() }}
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <br><br><br>
+
+        <input type="submit" value="Generate Results" name="submit">
+    </form>
+</body>
+</html>

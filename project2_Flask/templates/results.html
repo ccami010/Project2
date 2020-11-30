@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+    <br>
+    <!-- Checks for whether the list type is bestsellers or reviews -->
+    <!-- Bestsellers -->
+    {% if url_type == "bestsellers" %}
+    <h1>BESTSELLER LIST: {{ list_type }}</h1>
+        {% for dict_items in response_books %}
+        <table>
+            <ul>
+                <!-- Iterates through list of books and displays their image,
+                 title, author, description, and Amazon url in order -->
+                <img src={{ dict_items["book_image"] }} width="10%" height="10%">
+                <h3>{{ dict_items["title"] }} by {{dict_items["author"]}}</h3>
+                <p>{{ dict_items["description"] }}</p>
+                <a href= {{ dict_items["amazon_product_url"] }}>Link</a>
+            </ul>
+        </table>
+        <br><br><br>
+        {% endfor %}
+    <!-- Reviews -->
+    {% elif url_type == "reviews" %}
+    <h1>REVIEWS FROM {{ search_by }}: {{ query }}</h1>
+        <table>
+            {% for dict_items in response_books %}
+            <tr>
+                <td>
+                    <ul>
+                        <!-- Iterates through reviews list and displays title, book author,
+                         ISBNs, description, review author, and url for the review -->
+                        <h3>{{ dict_items["book_title"] }} by {{dict_items["book_author"]}}</h3>
+                        <p>ISBN: {{ dict_items[ "isbn13" ] }}</p>
+                        <p>Synopsis: {{ dict_items["summary"] }}</p>
+                        <p>Review written by: {{ dict_items["byline"] }}</p>
+                        <a href= {{ dict_items["url"] }}>Review Link</a>
+                        <br><br><br><br>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
